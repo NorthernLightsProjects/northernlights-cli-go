@@ -3,19 +3,35 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
-	"strings"
+	"time"
 )
 
 func main() {
-	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("Init time is", time.Now())
+
+	rand.Seed(time.Now().UnixNano())
+	fmt.Println("Random number is", rand.Intn(10))
+
+	//reader := bufio.NewReader(os.Stdin)
+	scanner := bufio.NewScanner((os.Stdin))
 
 	for {
 		fmt.Print("< /")
-		text, _ := reader.ReadString('\n')
 
-		if strings.Contains(text, "/") {
-			fmt.Println("> /")
-		}
+		scanner.Scan()
+
+		input := make([]string, 0)
+
+		//text, _ := reader.ReadString('\n')
+		text := scanner.Text()
+
+		//input = append(input, text...)
+		input = append(input, text)
+
+		command := input[0]
+
+		RunCommand(command)
 	}
 }
