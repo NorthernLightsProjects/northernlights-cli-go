@@ -1,22 +1,35 @@
 package main
 
+import (
+	"fmt"
+)
+
+var (
+	status   = true // determınes the runnıng state of the loop
+	commands = map[string]func(){
+		"abc": func() {
+			fmt.Println("abc command")
+
+		},
+		"/": func() {
+			Print("> /", 1)
+		},
+		"test": func() {
+			fmt.Println("test command")
+
+		},
+		"q": func() {
+			fmt.Println("q command")
+			status = false
+		},
+	}
+)
+
 func RunCommand(command string) bool {
-	status := true
 
-	switch command {
-
-	case "/":
-		Print("> /", 1)
-
-	case "test":
-		Print("test command")
-
-	case "q":
-		Print("q command")
-		status = false
-
+	if cmd, ok := commands[command]; ok {
+		cmd()
 	}
 
 	return status
-
 }
