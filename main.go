@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -22,17 +23,16 @@ func main() {
 
 		scanner.Scan()
 
-		input := make([]string, 0)
-
 		//text, _ := reader.ReadString('\n')
 		text := scanner.Text()
 
 		//input = append(input, text...)
-		input = append(input, text)
+		textArray := strings.Split(text, " ")
 
-		command := input[0]
+		command := textArray[0]
+		params := textArray[1:]
 
-		runCommandStatus := RunCommand(command)
+		runCommandStatus := RunCommand(command, params)
 
 		if !runCommandStatus {
 			break
