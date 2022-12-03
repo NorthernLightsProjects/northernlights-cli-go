@@ -32,6 +32,10 @@ func main() {
 
 		command := input[0]
 
-		RunCommand(command)
+		runCommandStatus := RunCommand(command)
+
+		if !runCommandStatus {
+			break
+		}
 	}
 }

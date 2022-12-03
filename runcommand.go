@@ -1,6 +1,7 @@
 package main
 
-func RunCommand(command string) {
+func RunCommand(command string) bool {
+	status := true
 
 	switch command {
 
@@ -9,5 +10,13 @@ func RunCommand(command string) {
 
 	case "test":
 		Print("test command")
+
+	case "q":
+		Print("q command")
+		status = false
+
 	}
+
+	return status
+
 }
