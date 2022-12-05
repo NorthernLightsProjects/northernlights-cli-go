@@ -13,10 +13,10 @@ func Print(text string, printType ...int) {
 
 	switch _type {
 	case 0:
-		fmt.Println("> " + text)
+		fmt.Println(text)
 	case 1:
+		fmt.Println("> " + text)
+	case 2:
 		fmt.Println("> /")
 	}
-
-	return
 }
