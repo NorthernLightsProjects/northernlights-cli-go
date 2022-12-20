@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
-	"strings"
 	"time"
 )
 
@@ -18,24 +17,5 @@ func main() {
 	//reader := bufio.NewReader(os.Stdin)
 	scanner := bufio.NewScanner((os.Stdin))
 
-	for {
-		fmt.Print("< /")
-
-		scanner.Scan()
-
-		//text, _ := reader.ReadString('\n')
-		text := scanner.Text()
-
-		//input = append(input, text...)
-		textArray := strings.Split(text, " ")
-
-		command := textArray[0]
-		params := textArray[1:]
-
-		runCommandStatus := RunCommand(command, params)
-
-		if !runCommandStatus {
-			break
-		}
-	}
+	Prompt(scanner)
 }
