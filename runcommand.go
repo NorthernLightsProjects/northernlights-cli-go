@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"
-	"strings"
+	s "strings"
 )
 
 var (
@@ -10,8 +9,13 @@ var (
 	status = true
 	// A map of functions.
 	commands = map[string]func(params []string){
+		"cmds": func(params []string) {
+			var cmds string = s.Join(params, ", ")
+			Print("Available commands: "+cmds, 1)
+		},
 		"abc": func(params []string) {
-			fmt.Println("abc command, params: ", params)
+			var _params string = s.Join(params, ", ")
+			Print("abc command, params: "+_params, 1)
 		},
 		"/": func(params []string) {
 			Print("> /", 2)
@@ -25,7 +29,7 @@ var (
 		},
 		// A function that takes a slice of strings as a parameter and returns a string.
 		"echo": func(params []string) {
-			text := strings.Join(params, " ")
+			text := s.Join(params, " ")
 			Print(text)
 		},
 		// Clearing the screen.
@@ -41,7 +45,12 @@ var (
 func RunCommand(command string, params []string) bool {
 
 	if cmd, ok := commands[command]; ok {
-		cmd(params)
+		if command == "cmds" {
+			commandsKeys, _ := getCommandNamesAndLen(commands)
+			cmd(commandsKeys)
+		} else {
+			cmd(params)
+		}
 	}
 
 	return status

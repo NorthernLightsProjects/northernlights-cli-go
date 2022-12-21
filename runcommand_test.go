@@ -10,15 +10,7 @@ import (
 func TestRunCommand(t *testing.T) {
 	rand.Seed(time.Now().UnixNano())
 
-	commandsLen := len(commands)
-
-	fmt.Println("commandsLen: ", commandsLen)
-
-	commandsKeys := make([]string, 0, commandsLen)
-
-	for k := range commands {
-		commandsKeys = append(commandsKeys, k)
-	}
+	commandsKeys, commandsLen := getCommandNamesAndLen(commands)
 
 	fmt.Println("commands keys:", commandsKeys)
 
