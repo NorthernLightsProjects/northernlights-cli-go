@@ -4,19 +4,19 @@ import (
 	"fmt"
 )
 
-func Print(text string, printType ...int) {
-	_type := 0
+func Print(text string, printType ...string) {
+	_type := ""
 
 	if len(printType) > 0 {
 		_type = printType[0]
 	}
 
 	switch _type {
-	case 0:
-		fmt.Println(text)
-	case 1:
+	case "response":
 		fmt.Println("> " + text)
-	case 2:
-		fmt.Println("> /")
+	case "warning":
+		fmt.Println("[!]" + text)
+	default:
+		fmt.Println(text)
 	}
 }

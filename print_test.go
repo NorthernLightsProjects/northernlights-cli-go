@@ -11,7 +11,7 @@ func TestPrint(t *testing.T) {
 	textArray := []string{"abc", "xyz"}
 	textArrayLen := len(textArray)
 	text := textArray[rand.Intn(textArrayLen)]
-	typeArray := []int{0, 1, 2}
+	typeArray := []string{"response", "warning", ""}
 	typeArrayLen := len(typeArray)
 	printType := typeArray[rand.Intn(typeArrayLen)]
 
